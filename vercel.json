@@ -8,8 +8,19 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "main.py"
+      "src": "/api/latency-metrics",
+      "dest": "main.py",
+      "methods": ["POST", "OPTIONS"]
+    },
+    {
+      "src": "/health",
+      "dest": "main.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/",
+      "dest": "main.py",
+      "methods": ["GET"]
     }
   ]
 }
