@@ -25,7 +25,7 @@ class RegionMetrics(BaseModel):
     avg_uptime: float
     breaches: int
 
-# Your data embedded directly in code to avoid file reading issues
+# Your data embedded directly in code
 latency_data = [
   {"region": "apac", "service": "support", "latency_ms": 205.28, "uptime_pct": 97.728, "timestamp": 20250301},
   {"region": "apac", "service": "recommendations", "latency_ms": 192.72, "uptime_pct": 99.33, "timestamp": 20250302},
@@ -119,3 +119,8 @@ async def root():
 @app.get("/health")
 async def health():
     return {"status": "healthy", "data_points": len(latency_data)}
+
+# Handle OPTIONS requests for CORS preflight
+@app.options("/api/latency-metrics")
+async def options_latency_metrics():
+    return {"message": "OK"}
